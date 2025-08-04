@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<!-- 
+ALTERNATIVE BASIC VERSION
+This is a simplified version of the portfolio with basic styling.
+The main version is available at index.html
+-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,6 +19,25 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+        }
+        
+        .version-banner {
+            background-color: rgba(12, 255, 225, 0.2);
+            color: #ffffff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 2000;
+            font-size: 14px;
+        }
+        
+        .version-banner a {
+            color: #0cffe1;
+            text-decoration: underline;
+            margin-left: 10px;
         }
         
         .container {
@@ -356,6 +380,9 @@
     </style>
 </head>
 <body>
+    <div class="version-banner">
+        This is the simplified version of the portfolio. <a href="index.html">View the full version</a>
+    </div>
     <!-- Navbar -->
     <nav>
         <div class="logo">
@@ -492,4 +519,4 @@
     </footer>
 
 </body>
-</html> 
+</html>

@@ -14,5 +14,5 @@ if exist "web2.jpg" (
 )
 
 echo.
-echo You can now run launch-index.bat to view your website.
-pause 
+echo You can now run launch-website.bat or launch-index.bat to view your website.
+pause

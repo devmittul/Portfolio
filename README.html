@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website Versions</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #0cffe1;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            color: #ff61d8;
+            margin-top: 30px;
+        }
+        
+        .version-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #0cffe1;
+        }
+        
+        .version-card h3 {
+            margin-top: 0;
+            color: #0cffe1;
+        }
+        
+        .version-card p {
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background: linear-gradient(to right, #4d79ff, #0cffe1);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Portfolio Website Versions</h1>
+        
+        <p>This portfolio website has multiple versions, each serving a different purpose. Below is an explanation of each version and when to use it.</p>
+        
+        <div class="version-card">
+            <h3>index.html - Main Version</h3>
+            <p>This is the primary version of the portfolio with full features, modern styling, and animations. Use this version for normal viewing and sharing with others.</p>
+            <p><strong>Features:</strong> Full animations, modern glass-effect UI, complete responsive design</p>
+            <a href="index.html" class="btn">View Main Version</a>
+        </div>
+        
+        <div class="version-card">
+            <h3>basic.html - Simplified Version</h3>
+            <p>A simplified version of the portfolio with basic styling. This version may load faster on older devices or slower connections.</p>
+            <p><strong>Features:</strong> Simplified styling, faster loading, core content</p>
+            <a href="basic.html" class="btn">View Basic Version</a>
+        </div>
+        
+        <div class="version-card">
+            <h3>debug.html - Debug Version</h3>
+            <p>A special version for debugging purposes. It loads the main site in an iframe with all animations disabled, making it easier to inspect elements and troubleshoot issues.</p>
+            <p><strong>Features:</strong> Animations disabled, elements fully visible, debugging-friendly</p>
+            <a href="debug.html" class="btn">View Debug Version</a>
+        </div>
+        
+        <h2>Launch Scripts</h2>
+        <p>The following batch files are available to launch different versions of the website:</p>
+        <ul>
+            <li><strong>launch-website.bat</strong> - Opens the main version (index.html)</li>
+            <li><strong>launch-index.bat</strong> - Also opens the main version (index.html)</li>
+            <li><strong>view-website.bat</strong> - Opens the main version (index.html)</li>
+            <li><strong>view-website-debug.bat</strong> - Creates and opens the debug version</li>
+        </ul>
+        
+        <footer>
+            <p>Portfolio Website Documentation - Mittul Dall</p>
+        </footer>
+    </div>
+</body>
+</html>

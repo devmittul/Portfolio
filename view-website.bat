@@ -1,5 +1,5 @@
 @echo off
 echo Opening Portfolio Website...
-start basic.html
+start index.html
 echo Website opened in your default browser!
-pause 
+pause

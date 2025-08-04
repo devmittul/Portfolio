@@ -2,6 +2,11 @@
 echo Creating a simple debug version of the portfolio...
 
 echo ^<!DOCTYPE html^> > debug.html
+echo ^<!-- >> debug.html
+echo DEBUG VERSION >> debug.html
+echo This is a special version for debugging the portfolio website. >> debug.html
+echo It loads index.html in an iframe with all animations disabled. >> debug.html
+echo --^> >> debug.html
 echo ^<html lang="en"^> >> debug.html
 echo ^<head^> >> debug.html
 echo     ^<meta charset="UTF-8"^> >> debug.html
@@ -18,7 +23,7 @@ echo     ^</style^> >> debug.html
 echo ^</head^> >> debug.html
 echo ^<body^> >> debug.html
 echo     ^<div class="noise-overlay"^>^</div^> >> debug.html
-echo     ^<iframe src="index.html" style="width:100%; height:100vh; border:none;"^>^</iframe^> >> debug.html
+echo     ^<iframe src="index.html" style="width:100vw; height:100vh; border:none; overflow:auto;"^>^</iframe^> >> debug.html
 echo ^</body^> >> debug.html
 echo ^</html^> >> debug.html
 
@@ -26,4 +31,4 @@ echo Opening debug version...
 start debug.html
 
 echo Debug version opened in your default browser!
-pause 
+pause
