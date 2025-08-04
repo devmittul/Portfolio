@@ -1,9 +1,19 @@
 <!DOCTYPE html>
+<!-- 
+MAIN PORTFOLIO WEBSITE
+This is the primary version of the portfolio with full features and styling.
+-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Mittul Dall - Creative Developer Portfolio showcasing web and app development projects">
     <title>My Portfolio | Creative Developer</title>
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="web3.jpg" as="image">
+    
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +27,7 @@
     <nav>
         <div class="logo">
             <div class="glass-effect">
-                <span>Crafting Your Dreams </span>
+                <span>Crafting Dreams</span>
             </div>
         </div>
         <div class="menu-items">
@@ -48,7 +58,7 @@
                 <div class="greeting">Hello, I'm</div>
                 <h1 class="name">Mittul Dall</h1>
                 <h2 class="profession"><span>Self-made</span> Developer</h2>
-                <p class="description">Passionate about blending creativity with functionality, I create stunning designs and seamless user experiences for web and mobile applications.</p>
+                <p class="description">Machine Learning and Data Science student, actively exploring the development side. I build smart, scalable websites, apps, and automations—blending creativity with code to create smooth, user-friendly experiences.</p>
                 <div class="cta-buttons">
                     <a href="#projects" class="cta-primary">View My Work</a>
                     <a href="#contact" class="cta-secondary">Contact Me</a>
@@ -86,8 +96,8 @@
             </div>
             <div class="about-content">
                 <div class="about-text">
-                    <p>I'm a versatile digital expert with a knack for creating stunning designs and seamless user experiences. With a focus on both front-end and back-end technologies, I deliver solutions that are both functional and visually striking.</p>
-                    <p>I thrive on transforming ideas into digital realities, delivering exceptional results that elevate brands and delight users. With a keen eye for detail and a commitment to excellence, I am dedicated to driving digital success for my clients.</p>
+                    <p>I'm a Machine Learning and Data Science student pursuing my Bachelor's at IIT Madras, with a growing interest in AI, deep learning, and workflow automation. I'm also exploring the development side—gradually learning to build websites, apps, and scalable, data-driven systems to tackle real-world problems.</p>
+                    <p>I love bringing ideas to life through simple, practical digital solutions. I'm always learning and improving, and I care about the little details that make systems work smoothly and feel good to use. For me, it's about building things that are useful, easy to navigate, and actually make a difference.</p>
                     <div class="stats">
                         <div class="stat-item">
                             <span class="stat-number">3+</span>
@@ -105,31 +115,49 @@
                 </div>
             </div>
             <div class="about-cards">
-                <div class="about-card glass-card">
-                    <div class="card-icon"><i class="fas fa-paint-brush"></i></div>
-                    <h3>Web Design</h3>
-                    <p>Designing visually appealing and user-friendly websites</p>
+                <div class="about-card glass-card chatbot-card">
+                    <div class="card-icon"><i class="fas fa-comment-dots"></i></div>
+                    <div class="chat-bubble">AI for your business</div>
+                    <h3>Business AI Chatbots</h3>
+                    <p>Smart AI agents for 24/7 customer engagement</p>
+                    <div class="tech-tags">
+                        <span>GPT</span>
+                        <span>Custom AI</span>
+                    </div>
                 </div>
-                <div class="about-card glass-card">
-                    <div class="card-icon"><i class="fas fa-code"></i></div>
-                    <h3>Web Development</h3>
-                    <p>Building responsive and robust websites from scratch</p>
+                <div class="about-card glass-card automation-card">
+                    <div class="card-icon"><i class="fas fa-robot"></i></div>
+                    <div class="chat-bubble">Smart automation</div>
+                    <h3>AI Automation</h3>
+                    <p>Streamlined processes with AI-powered systems</p>
+                    <div class="tech-tags">
+                        <span>Python</span>
+                        <span>RPA</span>
+                    </div>
                 </div>
-                <div class="about-card glass-card">
-                    <div class="card-icon"><i class="fas fa-mobile-alt"></i></div>
-                    <h3>App Development</h3>
-                    <p>Developing innovative and intuitive mobile applications</p>
+                <div class="about-card glass-card prompt-card">
+                    <div class="card-icon"><i class="fas fa-brain"></i></div>
+                    <div class="chat-bubble">Creative AI</div>
+                    <h3>Prompt Engineering</h3>
+                    <p>AI solutions for creative workflows</p>
+                    <div class="tech-tags">
+                        <span>GPT-4</span>
+                        <span>DALL-E</span>
+                    </div>
                 </div>
-                <div class="about-card glass-card">
-                    <div class="card-icon"><i class="fas fa-tasks"></i></div>
-                    <h3>Web & App Testing</h3>
-                    <p>Ensuring highest quality through meticulous testing</p>
+                <div class="about-card glass-card dev-card">
+                    <div class="card-icon"><i class="fas fa-laptop-code"></i></div>
+                    <div class="chat-bubble">Full-stack solutions for web & mobile</div>
+                    <h3>Development Studio</h3>
+                    <p>Digital experiences for all platforms</p>
+                    <div class="tech-tags">
+                        <span>React</span>
+                        <span>Node.js</span>
+                        <span>React Native</span>
+                        <span>Flutter</span>
+                    </div>
                 </div>
-                <div class="about-card glass-card">
-                    <div class="card-icon"><i class="fas fa-palette"></i></div>
-                    <h3>Brand Design</h3>
-                    <p>Crafting unique and memorable brand identities</p>
-                </div>
+
             </div>
         </div>
     </section>
@@ -216,7 +244,7 @@
                 </div>
                 <div class="contact-form glass-card">
                     <h3>Send Me a Message</h3>
-                    <form id="contactForm" action="https://formsubmit.co/devmittul@gmail.com" method="POST">
+                    <form id="contactForm" action="https://formsubmit.co/devmittul@gmail.com" method="POST" autocomplete="on">
                         <!-- FormSubmit configuration -->
                         <input type="hidden" name="_subject" value="New message from your portfolio website!">
                         <input type="hidden" name="_captcha" value="false">
@@ -225,18 +253,22 @@
                         
                         <!-- Form fields -->
                         <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                            <label for="name" class="visually-hidden">Your Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required autocomplete="name">
                         </div>
                         <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                            <label for="email" class="visually-hidden">Your Email</label>
+                            <input type="email" id="email" name="email" placeholder="Your Email" required autocomplete="email">
                         </div>
                         <div class="form-group">
+                            <label for="subject" class="visually-hidden">Subject</label>
                             <input type="text" id="subject" name="subject" placeholder="Subject" required>
                         </div>
                         <div class="form-group">
-                            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                            <label for="message" class="visually-hidden">Your Message</label>
+                            <textarea id="message" name="message" placeholder="Your Message" required rows="5"></textarea>
                         </div>
-                        <button type="submit" class="submit-btn">Send Message</button>
+                        <button type="submit" class="submit-btn">Send Message <i class="fas fa-paper-plane"></i></button>
                     </form>
                 </div>
             </div>
@@ -247,7 +279,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-logo">
-                <span>Crafting Your Dreams </span>
+                <span>Crafting Dreams</span>
             </div>
             <div class="footer-links">
                 <a href="#home">Home</a>
@@ -285,4 +317,4 @@
     </script>
     <script src="script.js"></script>
 </body>
-</html> 
+</html>

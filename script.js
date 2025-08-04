@@ -1,65 +1,44 @@
 // Initialize GSAP and ScrollTrigger if they exist
-if (typeof gsap !== 'undefined') {
-  try {
+try {
+  if (typeof gsap !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
-  } catch (error) {
-    console.warn('Error registering ScrollTrigger plugin:', error);
   }
+} catch (error) {
+  console.error('Error initializing GSAP:', error);
 }
 
 // Wait for the DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
   // Make sure the page is visible regardless of animations
   document.body.style.visibility = 'visible';
   document.body.style.opacity = '1';
   
-  // Only run GSAP code if it's available
-  if (typeof gsap === 'undefined') {
-    console.warn('GSAP not loaded. Animations disabled.');
-    return;
-  }
+  // Basic functionality
+  console.log('DOM fully loaded');
+  
+  // Enhanced card animations
+  initCardAnimations();
+  
+  // Initialize active menu link on scroll
+  initActiveMenuOnScroll();
+});
 
-  // Custom cursor effect
-  const cursor = document.querySelector('.custom-cursor');
-  
-  if (window.innerWidth > 768 && cursor) {
-    document.addEventListener('mousemove', (e) => {
-      gsap.to(cursor, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.1,
-        ease: 'power1.out'
-      });
-      
-      if (cursor.style.opacity === '0') {
-        gsap.to(cursor, {
-          opacity: 1,
-          duration: 0.3
-        });
-      }
-    });
-    
-    document.addEventListener('mouseout', () => {
-      gsap.to(cursor, {
-        opacity: 0,
-        duration: 0.3
-      });
-    });
-  }
-  
-  // Navbar active link update on scroll
+// Function to update active menu link based on scroll position
+function initActiveMenuOnScroll() {
   const sections = document.querySelectorAll('section');
   const navLinks = document.querySelectorAll('.menu-items a');
   
+  // Function to update active menu link
   function updateActiveLink() {
     let currentSection = '';
     
     sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
+      const sectionTop = section.offsetTop - 100; // Offset for better UX
+      const sectionHeight = section.offsetHeight;
+      const sectionId = section.getAttribute('id');
       
-      if (window.scrollY >= sectionTop - 100 && window.scrollY < sectionTop + sectionHeight - 100) {
-        currentSection = section.getAttribute('id');
+      if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+        currentSection = sectionId;
       }
     });
     
@@ -71,295 +50,113 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
+  // Update active link on scroll
   window.addEventListener('scroll', updateActiveLink);
   
-  // Hero section animations
-  try {
-    const tl = gsap.timeline();
+  // Update active link on page load
+  updateActiveLink();
+}
+
+// Function to initialize card animations
+function initCardAnimations() {
+  // Add mouse movement effect to cards
+  const cards = document.querySelectorAll('.glass-card');
+  
+  cards.forEach(card => {
+    // 3D tilt effect on mouse move
+    card.addEventListener('mousemove', function(e) {
+      const rect = this.getBoundingClientRect();
+      const x = e.clientX - rect.left; // x position within the element
+      const y = e.clientY - rect.top; // y position within the element
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      // Check if this is a contact section card to reduce the 3D effect by 60%
+      const isContactCard = this.closest('.contact-container') !== null;
+      
+      // Adjust movement based on card type
+      let moveX, moveY, translateZ, scale;
+      if (isContactCard) {
+        // Reduced by 60% for contact cards
+        moveX = (x - centerX) / 50; // 60% less than original /20
+        moveY = (y - centerY) / 50; // 60% less than original /20
+        translateZ = 4; // 60% less than original 10px
+        scale = 1.008; // 60% less than original 1.02
+      } else {
+        // Original values for other cards
+        moveX = (x - centerX) / 20;
+        moveY = (y - centerY) / 20;
+        translateZ = 10;
+        scale = 1.02;
+      }
+      
+      this.style.transform = `perspective(1000px) rotateX(${-moveY}deg) rotateY(${moveX}deg) translateZ(${translateZ}px) scale(${scale})`;
+      
+      // Dynamic highlight effect
+      const glowX = (x / rect.width) * 100;
+      const glowY = (y / rect.height) * 100;
+      this.style.background = `radial-gradient(circle at ${glowX}% ${glowY}%, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 40%, rgba(0,0,0,0) 60%)`;
+    });
     
-    tl.from('.greeting', {
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      ease: 'power3.out'
-    })
-    .from('.name', {
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      ease: 'power3.out'
-    }, '-=0.6')
-    .from('.profession', {
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      ease: 'power3.out'
-    }, '-=0.6')
-    .from('.description', {
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      ease: 'power3.out'
-    }, '-=0.6')
-    .from('.cta-buttons', {
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      ease: 'power3.out'
-    }, '-=0.6')
-    .from('.profile-image', {
-      scale: 0.8,
-      opacity: 0,
-      duration: 1,
-      ease: 'elastic.out(1, 0.5)'
-    }, '-=0.8')
-    .from('.orbit-element', {
-      scale: 0,
-      opacity: 0,
-      duration: 1,
-      stagger: 0.2,
-      ease: 'elastic.out(1, 0.5)'
-    }, '-=0.5');
-  } catch (error) {
-    console.warn('Error animating hero section:', error);
-    // Show elements without animation as fallback
-    document.querySelectorAll('.greeting, .name, .profession, .description, .cta-buttons, .profile-image, .orbit-element').forEach(el => {
-      el.style.opacity = '1';
+    // Reset transform on mouse leave
+    card.addEventListener('mouseleave', function() {
+      this.style.transform = '';
+      this.style.background = '';
+      
+      // Allow CSS transitions to take over
+      setTimeout(() => {
+        this.style.transition = '';
+      }, 300);
     });
-  }
-  
-  // Only run ScrollTrigger animations if available
-  if (typeof ScrollTrigger !== 'undefined') {
-    try {
-      // About cards staggered animation
-      gsap.from('.about-card', {
-        scrollTrigger: {
-          trigger: '.about-cards',
-          start: 'top 80%'
-        },
-        x: 100,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: 'power3.out'
-      });
-      
-      // Stats animation
-      gsap.from('.stat-item', {
-        scrollTrigger: {
-          trigger: '.stats',
-          start: 'top 80%'
-        },
-        y: 50,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: 'power3.out'
-      });
-      
-      // Project cards staggered animation
-      gsap.from('.project-card', {
-        scrollTrigger: {
-          trigger: '.projects-grid',
-          start: 'top 80%'
-        },
-        y: 100,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: 'power3.out'
-      });
-      
-      // Contact cards animation
-      gsap.from('.contact-card', {
-        scrollTrigger: {
-          trigger: '.contact-info',
-          start: 'top 80%'
-        },
-        x: -100,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: 'power3.out'
-      });
-      
-      // Contact form animation
-      gsap.from('.contact-form', {
-        scrollTrigger: {
-          trigger: '.contact-form',
-          start: 'top 80%'
-        },
-        y: 100,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out'
-      });
-    } catch (error) {
-      console.warn('Error setting up scroll animations:', error);
-      // Make all elements visible without animations
-      document.querySelectorAll('.about-card, .stat-item, .project-card, .contact-card, .contact-form').forEach(el => {
-        el.style.opacity = '1';
-      });
-    }
-  } else {
-    // Show elements if ScrollTrigger isn't available
-    document.querySelectorAll('.about-card, .stat-item, .project-card, .contact-card, .contact-form').forEach(el => {
-      el.style.opacity = '1';
-    });
-  }
-  
-  // Form submission - remove the simulation since we're using FormSubmit
-  const contactForm = document.getElementById('contactForm');
-  
-  if (contactForm) {
-    // Remove the previous event listener that simulated form submission
-    const oldSubmitHandler = contactForm.onsubmit;
-    contactForm.onsubmit = null;
     
-    // Add loading animation on submit
-    contactForm.addEventListener('submit', function() {
-      const submitBtn = this.querySelector('.submit-btn');
-      submitBtn.textContent = 'Sending...';
-      submitBtn.disabled = true;
-      
-      // The actual submission is handled by FormSubmit service
-      // This just provides visual feedback before the page redirects
+    // Smoother transition on mouse enter
+    card.addEventListener('mouseenter', function() {
+      this.style.transition = 'transform 0.1s ease-out, background 0.3s ease';
     });
-  }
+  });
   
-  // Scroll to top functionality
-  function createScrollTopButton() {
-    try {
-      const button = document.createElement('button');
-      button.innerHTML = '<i class="fas fa-arrow-up"></i>';
-      button.classList.add('scroll-top-btn');
-      document.body.appendChild(button);
-      
-      // Apply styles
-      button.style.position = 'fixed';
-      button.style.bottom = '30px';
-      button.style.right = '30px';
-      button.style.width = '50px';
-      button.style.height = '50px';
-      button.style.borderRadius = '50%';
-      button.style.backgroundColor = 'var(--glass-bg)';
-      button.style.backdropFilter = 'blur(10px)';
-      button.style.border = '1px solid var(--glass-border)';
-      button.style.color = 'var(--crayon-teal)';
-      button.style.fontSize = '1.2rem';
-      button.style.cursor = 'pointer';
-      button.style.display = 'flex';
-      button.style.alignItems = 'center';
-      button.style.justifyContent = 'center';
-      button.style.transition = 'all 0.3s ease';
-      button.style.opacity = '0';
-      button.style.visibility = 'hidden';
-      button.style.zIndex = '100';
-      
-      // Show/hide based on scroll position
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 500) {
-          button.style.opacity = '1';
-          button.style.visibility = 'visible';
-        } else {
-          button.style.opacity = '0';
-          button.style.visibility = 'hidden';
-        }
-      });
-      
-      // Scroll to top on click
-      button.addEventListener('click', () => {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-      });
-      
-      // Hover effect
-      button.addEventListener('mouseenter', () => {
-        button.style.transform = 'translateY(-5px)';
-        button.style.boxShadow = '0 5px 15px rgba(12, 255, 225, 0.3)';
-      });
-      
-      button.addEventListener('mouseleave', () => {
-        button.style.transform = 'translateY(0)';
-        button.style.boxShadow = 'none';
-      });
-    } catch (error) {
-      console.warn('Error creating scroll top button:', error);
-    }
-  }
-  
-  createScrollTopButton();
-});
+  // Remove all card reveal animations completely
+  // Don't add any classes that might cause cards to disappear or appear
+}
 
 // Mobile Menu Functionality
-document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.querySelector('.hamburger');
-    const nav = document.querySelector('nav');
-    let mobileMenu = document.querySelector('.mobile-menu');
-
-    // Function to create the mobile menu if it doesn't exist
-    function createMobileMenu() {
-        if (!mobileMenu) {
-            mobileMenu = document.createElement('div');
-            mobileMenu.classList.add('mobile-menu');
-            
-            const closeIcon = document.createElement('div');
-            closeIcon.classList.add('close-icon');
-            closeIcon.innerHTML = '<i class="fas fa-times"></i>';
-            mobileMenu.appendChild(closeIcon);
-
-            // Clone menu items from desktop nav
-            const menuItemsContainer = document.querySelector('.menu-items .glass-effect');
-            if (menuItemsContainer) {
-                const links = menuItemsContainer.querySelectorAll('a');
-                links.forEach(link => {
-                    const clonedLink = link.cloneNode(true);
-                    mobileMenu.appendChild(clonedLink);
-                });
-            }
-            
-            // Clone social icons from desktop nav
-            const socialIconsContainer = document.querySelector('.social-icons .glass-effect');
-            if (socialIconsContainer) {
-                const socialDiv = document.createElement('div');
-                socialDiv.style.marginTop = 'auto'; // Push social icons to bottom
-                socialDiv.style.paddingTop = '2rem';
-                socialDiv.style.display = 'flex';
-                socialDiv.style.justifyContent = 'center';
-                socialDiv.style.gap = '1.5rem';
-                socialDiv.style.fontSize = '1.5rem';
-
-                const icons = socialIconsContainer.querySelectorAll('a');
-                 icons.forEach(icon => {
-                    const clonedIcon = icon.cloneNode(true);
-                    socialDiv.appendChild(clonedIcon);
-                 });
-                 mobileMenu.appendChild(socialDiv);
-            }
-
-            document.body.appendChild(mobileMenu);
-            
-             // Add event listener for the close icon
-            closeIcon.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-            });
-            
-             // Add event listeners for the mobile menu links to close menu on click
-             const mobileLinks = mobileMenu.querySelectorAll('a');
-             mobileLinks.forEach(link => {
-                 link.addEventListener('click', () => {
-                     mobileMenu.classList.remove('active');
-                 });
-             });
-        }
+try {
+  const hamburger = document.querySelector('.hamburger');
+  let mobileMenu = null;
+  
+  // Function to create the mobile menu
+  function createMobileMenu() {
+    if (!mobileMenu) {
+      mobileMenu = document.createElement('div');
+      mobileMenu.classList.add('mobile-menu');
+      document.body.appendChild(mobileMenu);
     }
-
-    if (hamburger) {
-        hamburger.addEventListener('click', () => {
-            createMobileMenu(); // Ensure menu exists
-            mobileMenu.classList.toggle('active');
-        });
+  }
+  
+  // Function to close the mobile menu
+  function closeMobileMenu() {
+    if (mobileMenu && mobileMenu.classList.contains('active')) {
+      mobileMenu.classList.remove('active');
     }
-}); 
+  }
+  
+  // Function to open the mobile menu
+  function openMobileMenu() {
+    createMobileMenu();
+    mobileMenu.classList.add('active');
+  }
+  
+  // Initialize mobile menu functionality
+  if (hamburger) {
+    hamburger.addEventListener('click', function() {
+      if (mobileMenu && mobileMenu.classList.contains('active')) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+    });
+  }
+} catch (error) {
+  console.error('Error in mobile menu functionality:', error);
+}
