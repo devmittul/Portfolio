@@ -7,7 +7,7 @@ This is the primary version of the portfolio with full features and styling.
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Mittul Dall – Machine Learning & Data Science student at IIT Madras, based in Jaipur. Building smart websites, AI automations, and scalable apps.">
     <title>Mittul Dall | ML & Dev Portfolio – Jaipur</title>
@@ -24,14 +24,14 @@ This is the primary version of the portfolio with full features and styling.
     <meta property="og:url" content="https://portfolio.mittul.codes/">
     <meta property="og:title" content="Mittul Dall | ML & Dev Portfolio">
     <meta property="og:description" content="Machine Learning & Data Science student at IIT Madras. Building smart websites, AI automations, and scalable apps.">
-    <meta property="og:image" content="https://portfolio.mittul.codes/web3.jpg">
+    <meta property="og:image" content="https://portfolio.mittul.codes/web3.webp">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@immittul">
     <meta name="twitter:title" content="Mittul Dall | ML & Dev Portfolio">
     <meta name="twitter:description" content="Machine Learning & Data Science student at IIT Madras. Building smart websites, AI automations, and scalable apps.">
-    <meta name="twitter:image" content="https://portfolio.mittul.codes/web3.jpg">
+    <meta name="twitter:image" content="https://portfolio.mittul.codes/web3.webp">
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -40,7 +40,7 @@ This is the primary version of the portfolio with full features and styling.
       "@type": "Person",
       "name": "Mittul Dall",
       "url": "https://portfolio.mittul.codes/",
-      "image": "https://portfolio.mittul.codes/web3.jpg",
+      "image": "https://portfolio.mittul.codes/web3.webp",
       "sameAs": [
         "https://github.com/devmittul",
         "https://www.linkedin.com/in/immittul",
@@ -63,10 +63,11 @@ This is the primary version of the portfolio with full features and styling.
 
     <!-- Preload critical assets -->
     <link rel="preload" href="styles.css" as="style">
-    <link rel="preload" href="web3.jpg" as="image" fetchpriority="high">
+    <link rel="preload" href="web3.webp" as="image" fetchpriority="high">
 
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
@@ -91,7 +92,7 @@ This is the primary version of the portfolio with full features and styling.
     <nav>
         <div class="logo">
             <div class="glass-effect">
-                <img src="web3.jpg" alt="Mittul Dall Logo" class="logo-img">
+                <img src="web3.webp" alt="Mittul Dall Logo" class="logo-img">
             </div>
         </div>
         <div class="menu-items">
@@ -141,7 +142,7 @@ This is the primary version of the portfolio with full features and styling.
                     <div class="profile-image">
                         <!-- Profile image updated -->
                         <div class="profile-pic-container" style="border-radius: 50%; overflow: hidden;">
-                            <img src="web3.jpg" alt="Mittul Dall – ML developer and student, profile photo"
+                            <img src="web3.webp" alt="Mittul Dall – ML developer and student, profile photo"
                                 style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;"
                                 width="300" height="300"
                                 loading="eager" fetchpriority="high">
@@ -252,7 +253,7 @@ This is the primary version of the portfolio with full features and styling.
         <div class="projects-grid">
             <div class="project-card glass-card">
                 <div class="project-image">
-                    <img src="p1.png" alt="Screenshot of American Affairs website – news and politics platform"
+                    <img src="p1.webp" alt="Screenshot of American Affairs website – news and politics platform"
                         style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px 10px 0 0;"
                         width="400" height="250" loading="lazy">
                 </div>
@@ -270,7 +271,7 @@ This is the primary version of the portfolio with full features and styling.
             </div>
             <div class="project-card glass-card">
                 <div class="project-image">
-                    <img src="Author Logo Pen Writing.png" alt="Logo for personal blog website project"
+                    <img src="Author Logo Pen Writing.webp" alt="Logo for personal blog website project"
                         style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px 10px 0 0;"
                         width="400" height="250" loading="lazy">
                 </div>
@@ -364,7 +365,7 @@ This is the primary version of the portfolio with full features and styling.
     <footer>
         <div class="footer-content">
             <div class="footer-logo">
-                <img src="web3.jpg" alt="Mittul Dall Logo" class="logo-img">
+                <img src="web3.webp" alt="Mittul Dall Logo" class="logo-img">
             </div>
             <div class="footer-links">
                 <a href="#home">Home</a>
