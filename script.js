@@ -1,20 +1,11 @@
-// Initialize GSAP and ScrollTrigger if they exist
-try {
-  if (typeof gsap !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
-  }
-} catch (error) {
-  console.error('Error initializing GSAP:', error);
-}
-
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function () {
-  // Make sure the page is visible regardless of animations
   document.body.style.visibility = 'visible';
   document.body.style.opacity = '1';
 
-  // Basic functionality
-  console.log('DOM fully loaded');
+  // Dynamic copyright year
+  const yearEl = document.getElementById('copy-year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   // Enhanced card animations
   initCardAnimations();
@@ -44,8 +35,10 @@ function initActiveMenuOnScroll() {
 
     navLinks.forEach(link => {
       link.classList.remove('active');
+      link.removeAttribute('aria-current');
       if (link.getAttribute('href') === `#${currentSection}`) {
         link.classList.add('active');
+        link.setAttribute('aria-current', 'page');
       }
     });
   }
@@ -118,4 +111,47 @@ function initCardAnimations() {
 
   // Remove all card reveal animations completely
   // Don't add any classes that might cause cards to disappear or appear
+}
+
+// Mobile Menu Functionality
+try {
+  const hamburger = document.querySelector('.hamburger');
+  let mobileMenu = null;
+
+  // Function to create the mobile menu
+  function createMobileMenu() {
+    if (!mobileMenu) {
+      mobileMenu = document.createElement('div');
+      mobileMenu.classList.add('mobile-menu');
+      document.body.appendChild(mobileMenu);
+    }
+  }
+
+  // Function to close the mobile menu
+  function closeMobileMenu() {
+    if (mobileMenu && mobileMenu.classList.contains('active')) {
+      mobileMenu.classList.remove('active');
+    }
+  }
+
+  // Function to open the mobile menu
+  function openMobileMenu() {
+    createMobileMenu();
+    mobileMenu.classList.add('active');
+  }
+
+  // Initialize mobile menu functionality
+  if (hamburger) {
+    hamburger.addEventListener('click', function () {
+      if (mobileMenu && mobileMenu.classList.contains('active')) {
+        closeMobileMenu();
+        hamburger.setAttribute('aria-expanded', 'false');
+      } else {
+        openMobileMenu();
+        hamburger.setAttribute('aria-expanded', 'true');
+      }
+    });
+  }
+} catch (error) {
+  console.error('Error in mobile menu functionality:', error);
 }

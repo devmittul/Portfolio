@@ -9,12 +9,61 @@ This is the primary version of the portfolio with full features and styling.
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description"
-        content="Mittul Dall - Creative Developer Portfolio showcasing web and app development projects">
-    <title>My Portfolio | Creative Developer</title>
+        content="Mittul Dall – Machine Learning & Data Science student at IIT Madras, based in Jaipur. Building smart websites, AI automations, and scalable apps.">
+    <title>Mittul Dall | ML & Dev Portfolio – Jaipur</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://portfolio.mittul.codes/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://portfolio.mittul.codes/">
+    <meta property="og:title" content="Mittul Dall | ML & Dev Portfolio">
+    <meta property="og:description" content="Machine Learning & Data Science student at IIT Madras. Building smart websites, AI automations, and scalable apps.">
+    <meta property="og:image" content="https://portfolio.mittul.codes/web3.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@immittul">
+    <meta name="twitter:title" content="Mittul Dall | ML & Dev Portfolio">
+    <meta name="twitter:description" content="Machine Learning & Data Science student at IIT Madras. Building smart websites, AI automations, and scalable apps.">
+    <meta name="twitter:image" content="https://portfolio.mittul.codes/web3.jpg">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Mittul Dall",
+      "url": "https://portfolio.mittul.codes/",
+      "image": "https://portfolio.mittul.codes/web3.jpg",
+      "sameAs": [
+        "https://github.com/devmittul",
+        "https://www.linkedin.com/in/immittul",
+        "https://x.com/immittul",
+        "https://www.instagram.com/immittul/"
+      ],
+      "jobTitle": "Machine Learning & Data Science Student",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "IIT Madras"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jaipur",
+        "addressCountry": "IN"
+      },
+      "email": "devmittul@gmail.com"
+    }
+    </script>
 
     <!-- Preload critical assets -->
     <link rel="preload" href="styles.css" as="style">
-    <link rel="preload" href="web3.jpg" as="image">
+    <link rel="preload" href="web3.jpg" as="image" fetchpriority="high">
 
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -25,7 +74,8 @@ This is the primary version of the portfolio with full features and styling.
 </head>
 
 <body>
-    <div class="noise-overlay"></div>
+    <a href="#home" class="skip-link">Skip to main content</a>
+    <!-- <div class="noise-overlay"></div> -->
 
     <!-- Navbar -->
     <nav>
@@ -44,18 +94,23 @@ This is the primary version of the portfolio with full features and styling.
         </div>
         <div class="social-icons">
             <div class="glass-effect">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/immittul" target="_blank" rel="noopener noreferrer"><i
-                        class="fab fa-linkedin"></i></a>
-                <a href="https://x.com/immittul?t=PJbpidlW1fuesGk-Flp80w&s=35" target="_blank"
-                    rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
-                <a href="https://www.instagram.com/immittul/?igsh=eGRlY3hwYmtneWR5#" target="_blank"
-                    rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/devmittul" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/immittul" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile"><i class="fab fa-linkedin"></i></a>
+                <a href="https://x.com/immittul" target="_blank"
+                    rel="noopener noreferrer" aria-label="Twitter / X profile"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/immittul/" target="_blank"
+                    rel="noopener noreferrer" aria-label="Instagram profile"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
 
+        <button class="hamburger" aria-label="Open navigation menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </nav>
 
+    <main id="main-content">
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container" style="padding-top: 30px;">
@@ -76,8 +131,10 @@ This is the primary version of the portfolio with full features and styling.
                     <div class="profile-image">
                         <!-- Profile image updated -->
                         <div class="profile-pic-container" style="border-radius: 50%; overflow: hidden;">
-                            <img src="web3.jpg" alt="Mittul Dall"
-                                style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                            <img src="web3.jpg" alt="Mittul Dall – ML developer and student, profile photo"
+                                style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;"
+                                width="300" height="300"
+                                loading="eager" fetchpriority="high">
                         </div>
                     </div>
                     <div class="orbiting-elements">
@@ -185,8 +242,9 @@ This is the primary version of the portfolio with full features and styling.
         <div class="projects-grid">
             <div class="project-card glass-card">
                 <div class="project-image">
-                    <img src="p1.png" alt="American Affairs Website"
-                        style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px 10px 0 0;">
+                    <img src="p1.png" alt="Screenshot of American Affairs website – news and politics platform"
+                        style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px 10px 0 0;"
+                        width="400" height="250" loading="lazy">
                 </div>
                 <div class="project-info">
                     <h3>American Affairs Website</h3>
@@ -195,15 +253,16 @@ This is the primary version of the portfolio with full features and styling.
                         navigation.</p>
                     <div class="project-links">
                         <a href="https://theamericanaffairs.com/" target="_blank" rel="noopener noreferrer"
-                            class="project-link"><i class="fas fa-globe"></i> Live Demo</a>
-                        <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                            class="project-link" aria-label="View American Affairs Website Live Demo"><i class="fas fa-globe"></i> Live Demo</a>
+                        <a href="#" class="project-link" aria-label="View American Affairs Website Source Code"><i class="fab fa-github"></i> Code</a>
                     </div>
                 </div>
             </div>
             <div class="project-card glass-card">
                 <div class="project-image">
-                    <img src="Author Logo Pen Writing.png" alt="Blog Website"
-                        style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px 10px 0 0;">
+                    <img src="Author Logo Pen Writing.png" alt="Logo for personal blog website project"
+                        style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px 10px 0 0;"
+                        width="400" height="250" loading="lazy">
                 </div>
                 <div class="project-info">
                     <h3>Personal Blog Website</h3>
@@ -215,8 +274,8 @@ This is the primary version of the portfolio with full features and styling.
                         <span>JavaScript</span>
                     </div>
                     <div class="project-links">
-                        <a href="#" class="project-link"><i class="fas fa-globe"></i> Live Demo</a>
-                        <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                        <a href="#" class="project-link" aria-label="View Personal Blog Website Live Demo"><i class="fas fa-globe"></i> Live Demo</a>
+                        <a href="#" class="project-link" aria-label="View Personal Blog Website Source Code"><i class="fab fa-github"></i> Code</a>
                     </div>
                 </div>
             </div>
@@ -244,16 +303,6 @@ This is the primary version of the portfolio with full features and styling.
                     <div class="contact-divider"></div>
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Phone</h3>
-                            <p>+91 9468735471</p>
-                        </div>
-                    </div>
-                    <div class="contact-divider"></div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div class="contact-details">
@@ -268,29 +317,28 @@ This is the primary version of the portfolio with full features and styling.
                         autocomplete="on">
                         <!-- FormSubmit configuration -->
                         <input type="hidden" name="_subject" value="New message from your portfolio website!">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="thankyou.html">
-                        <input type="hidden" name="_honey" style="display:none">
+                        <input type="hidden" name="_next" value="https://devmittul.github.io/myintro/thankyou.html">
+                        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
 
                         <!-- Form fields -->
-                        <div class="form-group">
-                            <label for="name" class="visually-hidden">Your Name</label>
-                            <input type="text" id="name" name="name" placeholder="Your Name" required
+                        <div class="form-group floating">
+                            <input type="text" id="name" name="name" placeholder=" " required
                                 autocomplete="name">
+                            <label for="name">Your Name</label>
                         </div>
-                        <div class="form-group">
-                            <label for="email" class="visually-hidden">Your Email</label>
-                            <input type="email" id="email" name="email" placeholder="Your Email" required
+                        <div class="form-group floating">
+                            <input type="email" id="email" name="email" placeholder=" " required
                                 autocomplete="email">
+                            <label for="email">Your Email</label>
                         </div>
-                        <div class="form-group">
-                            <label for="subject" class="visually-hidden">Subject</label>
-                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                        <div class="form-group floating">
+                            <input type="text" id="subject" name="subject" placeholder=" " required>
+                            <label for="subject">Subject</label>
                         </div>
-                        <div class="form-group">
-                            <label for="message" class="visually-hidden">Your Message</label>
-                            <textarea id="message" name="message" placeholder="Your Message" required
+                        <div class="form-group floating">
+                            <textarea id="message" name="message" placeholder=" " required
                                 rows="5"></textarea>
+                            <label for="message">Your Message</label>
                         </div>
                         <button type="submit" class="submit-btn">Send Message <i
                                 class="fas fa-paper-plane"></i></button>
@@ -299,6 +347,8 @@ This is the primary version of the portfolio with full features and styling.
             </div>
         </div>
     </section>
+
+    </main>
 
     <!-- Footer -->
     <footer>
@@ -313,7 +363,7 @@ This is the primary version of the portfolio with full features and styling.
                 <a href="#contact">Contact</a>
             </div>
             <div class="footer-social">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                <a href="https://github.com/devmittul" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/immittul" target="_blank" rel="noopener noreferrer"><i
                         class="fab fa-linkedin"></i></a>
                 <a href="https://x.com/immittul?t=PJbpidlW1fuesGk-Flp80w&s=35" target="_blank"
@@ -323,7 +373,7 @@ This is the primary version of the portfolio with full features and styling.
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Mittul Dall. All Rights Reserved.</p>
+            <p>&copy; <span id="copy-year"></span> Mittul Dall. All Rights Reserved.</p>
         </div>
     </footer>
 
@@ -331,18 +381,6 @@ This is the primary version of the portfolio with full features and styling.
     <div class="custom-cursor"></div>
 
     <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-    <script>
-        // Fallback for when GSAP isn't loaded
-        if (typeof gsap === 'undefined') {
-            console.warn('GSAP not loaded. Using basic functionality.');
-            document.addEventListener('DOMContentLoaded', function () {
-                document.body.style.display = 'block';
-                document.body.style.opacity = '1';
-            });
-        }
-    </script>
     <script src="script.js"></script>
 </body>
 
